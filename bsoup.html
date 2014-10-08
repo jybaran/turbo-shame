@@ -1,0 +1,1617 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>C'est la Z</title>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/assets/js/lightbox.js"></script>
+
+    <link rel="stylesheet" href="/assets/css/ivory.css" />
+    <link rel="stylesheet" href="/assets/css/menu.css" />
+    <link rel="stylesheet" href="/assets/css/pyg.css" />
+
+
+    <style>
+     .title { font-size:250%;}
+     .logo { padding-left:20px; padding-top:20px;height:120px; width:150px;}
+     body {background-image:url('/assets/images/bg.png');}
+     .hoverback tr:hover {background-color:gray};
+    </style>
+  </head>
+  <body>
+
+    <div class="row">
+      <div class="c2 center">
+    <img class="logo" src="/assets/images/thluffy.jpg">
+  </div>
+      <div class="c1 first"></div>
+      <div class="c6">
+	<h1 align=center>C'est la Z</h1>
+	<h3 align=center>Musings about education, computer science, and maybe a few other miscellaneous topics.</h3>
+      </div>
+    </div>
+ 
+
+<!--  menu -->
+<div class="row">
+  <div class="c12" first>
+    <div id="cssmenu">
+      <ul>
+	<li class="active"><a href="/">Home</a></li>
+	<li><a href="/natan.html">Natan's Music</a></li>
+	<li><a href="http://github.com/zamansky">GitHub</a></li>
+	<li><a href="/allindex.html">Blog Index</a></li>
+	<li class="right"><a href="/about.html">About</a></li>
+	<li class="right">
+	  <a href="http://feeds.feedburner.com/CestLaZ" title="Subscribe to my feed" rel=
+	    "alternate" type="application/rss+xml"><img src="http://www.feedburner.com/fb/i
+							mages/pub/feed-icon16x16.png" alt="" style="border:0"/>Subscribe in a reader</a>
+	</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row space-top space-bot"></div>
+<!-- end menu -->
+
+    <div class="row">
+      <div class="c1 first"></div>
+      <div class="c8 first">
+	<!-- Main Blog Content -->
+	  <ul class="no-bullet">
+    
+    <li>
+      <a class="title" href="/2014/10/05/easy-assignments.html">Using easy assignments to introduce deep concepts</a><span class="right">05 Oct 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<p>
+In this early part of the semester, the students don't know all that
+much. We haven't covered that many language constructs let along
+algorithms, development techniques and all that other good stuff.
+</p>
+
+<p>
+In terms of the "Java" part of APCS we've talked about basic types,
+Strings, basic classes, loops and conditionals. We're limited in the
+tools we have but we can still get the classes thinking in the right
+way.
+</p>
+
+<p>
+Last week, when we introduced loops we spent some time drawing shapes.
+</p>
+
+<p>
+Starting with things like
+</p>
+
+Rectangle:
+<pre>
+*****
+*****
+*****
+</pre>
+
+<p>
+and
+</p>
+
+Triangle1
+<pre>
+*
+**
+***
+****
+*****
+</pre>
+
+<p>
+Simple nested loop stuff.
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span> = <span style="color: #8b2252;">""</span>;
+<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = 0; r &lt; <span style="color: #228b22;">height</span>; r++) {
+  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span>=0; c&lt;=r; c++ ){
+    s=s+<span style="color: #8b2252;">"*"</span>;<span style="color: #ff0000; font-weight: bold;">"</span>
+<span style="color: #8b2252;">  }</span>
+<span style="color: #8b2252;">  s=s+"</span>\n<span style="color: #ff0000; font-weight: bold;">"</span><span style="color: #8b2252;">;</span>
+<span style="color: #8b2252;">}</span>
+<span style="color: #8b2252;">return s;</span>
+</pre>
+</div>
+
+<p>
+Things get interesting when we looked at the next one:
+</p>
+
+Triangle2:
+<pre>
+    *
+   **
+  ***
+ ****
+*****
+</pre>
+
+<p>
+It seems like a simple little problem with a simple solution:
+</p>
+
+<p>
+What I love about it is that you can look at it in a couple of
+interesting ways.
+</p>
+
+<p>
+First, you can look at those spaces as a triangle in and of
+themselves (replaced with # below):
+</p>
+
+<pre>
+####*
+###**
+##***
+#****
+*****
+</pre>
+
+<p>
+Well, that's almost the same as the Triangle1 from above. Also, if you
+take away that triangle of spaces, you're pretty much left with
+Triangle1.
+</p>
+
+<p>
+The structure of the code can look something like:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span>=<span style="color: #8b2252;">""</span>;
+<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = 0; r &lt; <span style="color: #228b22;">height</span>; r++){
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">loop over the number of spaces we need for this line</span>
+
+  <span style="color: #b22222;">// </span><span style="color: #b22222;">loop over the number of stars we need for this line</span>
+
+  s=s+<span style="color: #8b2252;">"\n"</span>;
+}
+<span style="color: #a020f0;">return</span> s;
+</pre>
+</div>
+
+<p>
+We can also look at the problem just as a series of lines. How many
+spaces and how many stars:
+</p>
+
+
+<p>
+Let's say height = 5
+</p>
+<div class="org-src-container">
+
+<pre class="src src-org"><span style="color: #0000ff;">| row | spaces | stars |</span>
+<span style="color: #0000ff;">|-----+--------+-------|</span>
+<span style="color: #0000ff;">|   0 |      4 |     1 |</span>
+<span style="color: #0000ff;">|   1 |      3 |     2 |</span>
+<span style="color: #0000ff;">|   2 |      2 |     3 |</span>
+<span style="color: #0000ff;">|   3 |      1 |     4 |</span>
+<span style="color: #0000ff;">|   4 |      0 |     5 |</span>
+<span style="color: #0000ff;">|-----+--------+-------|</span>
+<span style="color: #0000ff;">|   r |  h-r-1 |   r+1 |</span>
+<span style="color: #0000ff;">|-----+--------+-------|</span>
+</pre>
+</div>
+
+<p>
+Once we see the relationships between height (h) and row (r) for each
+level, we're led to:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span>=<span style="color: #8b2252;">""</span>;
+<span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">r</span> = 0; r &lt; <span style="color: #228b22;">height</span>; r++){
+  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span> = 0 ; c &lt; <span style="color: #228b22;">height</span> - r - 1; c++)
+    s=s+<span style="color: #8b2252;">" "</span>;
+  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">c</span> = 0 ; c&lt;<span style="color: #228b22;">r</span>+1; c++)
+    s=s+<span style="color: #8b2252;">"*"</span>;
+  s=s+<span style="color: #8b2252;">"\n"</span>;
+}
+<span style="color: #a020f0;">return</span> s;
+</pre>
+</div>
+
+<p>
+We then looked at:
+</p>
+
+Triangle3:
+<pre>
+   *
+  ***
+ *****
+*******
+</pre>
+
+<p>
+We worked it the same way but also noted that we could take a cheesy
+approach to the number of stars on each line. We could start with
+numStars=1 and then at the end of the loop, do numStars =
+numStars + 2. 
+</p>
+
+<p>
+I say it's a cheesy solution, but the point is some times you can come
+up with a formula (as in the able above) other times you just see how
+to change things between iterations.
+</p>
+
+<p>
+The final problem was this:
+</p>
+
+<pre>
+   *
+  ***
+ *****
+  ***
+   *
+   
+</pre>
+
+<p>
+This time the class noticed that they could start with just calling
+Triangle3 and then taking a copy of the Triangle3 code and tweaking
+it.
+</p>
+
+<p>
+This led to a talk of refactoring and ultimately writing  line
+routine:
+</p>
+
+<div class="org-src-container">
+
+<pre class="src src-java"><span style="color: #a020f0;">public</span> <span style="color: #228b22;">String</span> <span style="color: #0000ff;">line</span>(<span style="color: #228b22;">String</span> <span style="color: #a0522d;">c</span>, <span style="color: #228b22;">int</span> <span style="color: #a0522d;">num</span>){
+  <span style="color: #228b22;">String</span> <span style="color: #a0522d;">s</span>=<span style="color: #8b2252;">""</span>;
+  <span style="color: #a020f0;">for</span> (<span style="color: #228b22;">int</span> <span style="color: #a0522d;">i</span>=0;i&lt;<span style="color: #228b22;">num</span>;i++)
+    s=s+c;
+  <span style="color: #a020f0;">return</span> s;
+}
+</pre>
+</div>
+
+<p>
+The idea is to get the kids
+thinking about things in the right way. On top of just playing with
+nested loops, we dealt with:
+</p>
+
+<ul class="org-ul">
+<li>Looking at problems in multiple ways.
+</li>
+<li>Coming up with formulas and also just brute force tweaking.
+</li>
+<li>Re-using existing code.
+</li>
+<li>refactoring.
+</li>
+</ul>
+
+<p>
+Not a bad set of classes.
+</p>
+
+      <a href="/2014/10/05/easy-assignments.html">Read more -</a><a href="/2014/10/05/easy-assignments.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/09/23/I-know-that.html">Wait, I know that!!!!</a><span class="right">23 Sep 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<p>
+If I'm doing my job right, by the time my kids graduate they can learn
+on their own.
+</p>
+
+<p>
+It's like when two years ago, before starting her summer internship,
+Batya listed all the tools and technologies she had to work with. When
+I pointed out that she hadn't ever used any of them before and asked
+how she was going to deal with it, she replied "I'll figure it out."
+And she did. 
+</p>
+
+<p>
+At the end of the summer, Dina told a similar story about her
+internship and how she knew she'd figure everything out because of the
+solid background she got by going through StuyCS. 
+</p>
+
+<p>
+I loved both these stories.
+</p>
+
+<p>
+But getting the kids there takes time.
+</p>
+
+<p>
+Yesterday, in my AP classes, I assigned three <i>codingbat</i> problems. I
+decided to go objects first this time round so we haven't done any
+language constructs. The problems were simple String manipulations but
+I added one that needed conditionals.
+</p>
+
+<p>
+Today we went over them. Most of the class solved the assignment and
+most had either no trouble or had to do just a little work.
+</p>
+
+<p>
+I asked what about that last problem might have caused some
+difficulty.
+</p>
+
+<p>
+They couldn't figure it out, it seemed pretty straighforward. After a
+number of guesses, one student  said:
+</p>
+
+<p>
+"Wait, we don't know ifs"
+</p>
+
+<p>
+That was it. They didn't realize that they had taught themselves
+something new.
+</p>
+
+<p>
+This, of course, doesn't just happen.
+</p>
+
+<p>
+They've seen conditionals in all sorts of guises.
+</p>
+
+<p>
+Scheme:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-scheme">(<span style="color: #a020f0;">if</span> boolean_expression
+  True_part
+  False_part)
+</pre>
+</div>
+
+<p>
+NetLogo:
+</p>
+<pre class="example">
+if boolean [True part]
+
+and
+
+ifelse boolean [True part][ False part]
+</pre>
+
+<p>
+and Python:
+</p>
+<div class="org-src-container">
+
+<pre class="src src-python"><span style="color: #a020f0;">if</span> <span style="color: #483d8b;">bool</span>:
+  s1
+<span style="color: #a020f0;">elif</span> bool2:
+  s2
+<span style="color: #a020f0;">else</span>:
+  s3
+</pre>
+</div>
+
+<p>
+and so on.
+</p>
+
+<p>
+So they new the concept, from there it was just details.
+</p>
+
+<p>
+Some said they just wrote it and it worked. Some said they looked up
+sample code. Most didn't think they were doing anything new.
+</p>
+
+<p>
+It was pretty awesome.
+</p>
+
+<p>
+It's still a long road before they graduate, but we're getting there.
+</p>
+
+      <a href="/2014/09/23/I-know-that.html">Read more -</a><a href="/2014/09/23/I-know-that.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/09/17/stuycs-spectator.html">A birds eye view of my career</a><span class="right">17 Sep 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<p>
+It's hard to believe that this is my 25th year teaching and that my
+first StuyCS class graduated in June 1995. It's really hard to believe
+that I'm now looking at the end of a significant part of my life and
+career.
+</p>
+
+<p>
+Over the summer, Mariya, Kachun, and Stella, all writers for Stuy's
+Spectator worte an article that chronicled StuyCS. It's a really nice
+piece. It skirted the battles I've had and the fact that we get no
+love or support from Stuy or the DOE, but still, as I said, it's a
+really nice piece.
+</p>
+
+<p>
+the original can be found <a href="http://www.stuyspec.com/features/how-to-hack-yourself-a-class">here</a> but I've copied the article (with
+permission) below.
+</p>
+
+<p>
+Two decades in about two pages.
+</p>
+
+<p>
+Enjoy.
+</p>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">How to Hack Yourself a Class</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+By Mariya Gedrich, Kachun Leung, and Stella Ma
+</p>
+
+<p>
+Imagine Stuyvesant without a computer science program. Aspire to pursue a career in software development? Nope, but perhaps you could go into the ever-lucrative handmade telescope business after taking a telescope assembly class. Want to explore all the features of your laptop? Well, that’s probably not happening at school. Want to take Advanced Placement (AP) Computer Science? Good luck getting into that one class taught by that one teacher. If this seems like a hassle to you, it was definitely a problem 20 years ago when this was the reality.
+</p>
+
+<p>
+Today, every Stuyvesant student is expected to graduate with at least one semester of Introductory Computer Science, and for those who are interested in continuing with the course, there are plenty of classes offered. In fact, AP Computer Science is one of the most sought after classes every year. Last year, around 400 students applied to take the class, and an extra section had to be added to accommodate the disappointed students who did not get in. In 1994, however, Stuyvesant had only a few classes dedicated to the use and study of computers. There was no official computer science program other than one AP Computer Science class taught by a math teacher who was much more passionate about teaching math than about teaching computers.
+</p>
+
+
+<p>
+A new math teacher at the time, Michael Zamansky, was teaching geometry. Zamansky, felt out of place teaching a math class. “I’m not a mathematician, I’m a computer scientist,” Zamansky explained. Before long, it was clear that the switch was inevitable. Zamansky enthusiastically recalls the day he was taken out of a class to talk to math chairman Richard Rothenberg: The previous teacher said, “‘Richie, I don’t want to teach computer science—Mike does.’”
+</p>
+
+<p>
+And that was when the ball started rolling.
+</p>
+
+<p>
+In the fall of 1994, Zamansky started teaching the AP Computer Science class. In turn, enrollment skyrocketed as there was now an enthusiastic and passionate teacher. Juniors and seniors filled four sections of the class, more than ever before.
+</p>
+
+<p>
+The classes fostered a new interest in computer science among students. Feeling that there was much more to be done with this new enthusiasm, Zamansky asked his class if they’d like to have a spring class in Systems Programming, a class in which students would learn about memory organization, interrupts, and computer representation of numbers. Although both his students and the administration approved of this idea, Zamansky was unable to fit the class into the students’ 8-period schedules, especially since they had other commitments like math team in the morning. The solution came when students volunteered to stay an extra period after school, making Systems Programming a ninth period class. Students readily signed up; Zamansky was now staying after school every day with a group of students eager to learn. Noticing how popular the Systems Programming class was, Zamansky decided to create a fall semester supplementary course in Advanced Computer Graphics, in which he taught students how to use C and Pascal. Because of the popularity of these classes, the electives were incorporated into the schedule and staying after school was no longer necessary by the fall of 1995.
+</p>
+
+<p>
+The classes proved to be a massive success. Computer science students were getting involved in international competitions, claiming top spots wherever they went. The result of the newly formed computer science classes was a very close-knit subculture. All of his students shared a common interest and now had a venue for developing it. “That cohort from Mike’s first class really bonded as a group,” recalled alumnus Yu Ping Hu (’95) in an e-mail interview. “I remember cutting all my classes for days on end to spend time in the lab with other kids in the class to work on our projects and hang out (and Mike kicking us out when he found out about it, not that it stopped us from doing it again when he wasn’t in the room).” In addition, “Hackers,” a film about a young boy who was arrested for writing a computer virus, was filmed at Stuyvesant, and a real life hacking incident took place. These events helped create traditions and lore for that community, according to Hu.
+</p>
+
+<p>
+Zamansky also helped foster a community by teaching with a fun, playful attitude. According to former computer science teacher and alumnus Boris Granovskiy, students and teachers constantly played pranks on each other. “I definitely remember one day when there were several bake sales at Stuy, and so Mr. Zamansky and some of my friends bought up a bunch of pies and ambushed me when I got to the classroom, leading to a chase around the classroom and a lot of flying pastry,” he recalled.The annual Halloween tradition of all the computer science teachers dressing up and performing skits for their classes has its roots in Zamansky’s enthusiasm for dressing up in an elaborate costume. “The first year I taught, Mr. Zamansky and I dressed up as Hans and Franz from Saturday Night Live and walked around trying to teach in character the entire day,” Granovskiy recalls. The following year they both dressed up as the Hulk and had to somehow teach by only using grunting noises.
+</p>
+
+<p>
+Even though a vibrant culture had formed around the classes, only a small portion of the student body was a part of it. “A lot of kids won’t even think about computer science,” Zamansky explained. The ones who did, however, often fell in love with it. Alumnus and computer software developer Anita Verma remembers how she originally took Zamansky’s Introduction to Computer Science (Intro) class when it was an elective during her sophomore year. “I had heard great things about Mr. Zamansky, and I always loved computers, so I was very excited to take his class,” she said in an email interview. Although computer science was new to her, she quickly became fond of the class. “Classes never felt like a grind, like most of my other classes did. Looking back at these classes now, I understand that this is what learning is supposed to feel like, when you find something that you are passionate about,” she said. “I retained everything I learned in those classes, and used that as the foundation of the computer science education I would receive at college and in the workplace.”
+</p>
+
+<p>
+Verma is just one of many of Zamansky’s students who have gone on to have jobs in the tech industry, with some working at Google and others at the National Security Agency. “When one of my students got his doctorate, he gave me a copy of [it], and he’s a good friend of mine now…when another student wrote a book, I’m in the acknowledgments,” he said. “So I know these guys appreciate me but I’m like, ‘can’t I do more?’”
+</p>
+
+<p>
+That was when Zamansky decided to pursue a required Intro class for all students by what he considered “hacking” the school’s system. He started working on his idea for this program in 1997, but did not get the chance to make it a reality until 2002, when drafting teacher Timothy Pon left Stuyvesant. Since Pon left behind a drafting class, Zamansky was able to swoop in and substitute one of his Intro classes for the drafting class as a graduation requirement, a move that pleased a large portion of the student body. “Students began to say, ‘Hey, this is ridiculous. Computer science is so much more valuable,’ since the whole idea was that we want to give you the basic tools to inspire you and get you to think like a computer scientist,” Zamansky said.
+</p>
+
+<p>
+The additional Intro class added yet another teacher to the computer science faculty,  Boris Granovskiy. It was the students in Granovskiy’s class who were allowed get a graduation credit for their Intro class to replace the drafting requirement. Students, however, began to complain that it was unfair for only one Intro class to satisfy the graduation requirement. “If you were in my class you didn’t get credit because it was only for this one substitute,” Zamansky explained. After the complaints increased, the administration caved in and allowed all Intro classes to get credit.
+</p>
+
+<p>
+Once a single semester of Introduction to Computer Science (MKS21) was officially a graduation requirement, Zamansky began to work on creating a second semester class for his intro program, MKS22. “The whole idea behind Intro to Computer Science is that during MKS21, the first half, you learn to think like a computer scientist. But in MKS22, you’re gonna use real stuff. We do data analysis…and this is something that no matter what field you’re going to go into, they’re gonna help you,” he explained. Finally with the success of creating a whole year of Intro, Zamansky was able to achieve his goal of teaching computer science to the whole student body.
+</p>
+
+<p>
+Although the wide array of computer science classes has grown into one of the most popular programs in Stuyvesant, it still faces several obstacles. The most prominent of these problems is that this program is not classified as a separate department because there is not a separate licensing for computer science teachers. Since the computer science programs are classified as math, it leads to several conflicts of interest, namely the daily functions of the program. This includes hiring and evaluating teachers and transferring students between classes. Furthermore, some of the computer science teachers are also math teachers, which causes problems when creating schedules each year. Assistant Principal of Mathematics Maryann Ferrara in particular has to deal with these problems; while hiring teachers, she has to find a fair way to allocate money for teachers between both the math department and the computer science program, according to Zamansky.
+</p>
+
+<p>
+Even though Zamansky and his program have faced problems to this day, he continues to take pride in what he has done with it. During his interview, he joyfully recounted memories of his students and their achievements of working for companies like Electronic Arts, Google, and Facebook. Besides the individual student accomplishments, the program has grown beyond the walls of Stuyvesant to include an organization called Computer Science and Technology for Urban Youth, a computer science program at St. Joseph’s College that pioneered this summer. Taught by several of Stuyvesant’s computer science teachers including JonAlf Dyrland-Weaver and Samuel Konstatinovich, the goal of the program is the same as it was in the beginning: to expose more students to computer science and to give them a venue to develop their skills.
+</p>
+
+<p>
+And so, from a single section of AP Computer Science taught by a single teacher in 1994, Stuyvesant’s computer science program has grown into a sophisticated program that is one of a kind. “We had investors who wanted to invest in our student projects before they graduated. That doesn’t happen anywhere. We’ve got this very special thing that is nowhere else in the country,” Zamansky said. “There’s really nothing comparable to it.”
+</p>
+</div>
+</div>
+
+      <a href="/2014/09/17/stuycs-spectator.html">Read more -</a><a href="/2014/09/17/stuycs-spectator.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/09/05/SHIP-index.html">Building a High School Summer CS Program - SHIP</a><span class="right">05 Sep 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+I wanted to do a couple more posts on the <a href="http://cstuy.org">CSTUY</a> summer program SHIP,
+particularly about getting funding and reflections but I think I'll
+just wrap things up with the school year starting. 
+</p>
+
+<p>
+Overall it was an amazing success and I'm amazingly proud of the
+entire team (in no particular order):
+</p>
+
+<p>
+Devorah, JonAlf, Sam, Yulia, Topher, Ethan, 
+Leslie, Brian, Andreas, Natan, Miranda, Nadia, Fawn, Lise, Jessica,
+Angela, Benedict, Elise, Fish, and Derek.
+</p>
+
+<p>
+and also proud of all the shipmates. Looking at where they started and
+where they ended up &#x2013; they were really terrific.
+</p>
+
+<p>
+The only downside is knowing what we can accomplish when we have the
+freedom, it reminds me about how badly we're
+handcuffed by our school and the department of education.
+</p>
+
+<p>
+Here are links to all the posts in case anyone's interested: 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<ul class="org-ul">
+<li><a href="http://cestlaz.github.io/2014/07/03/launching-ship.html#.VAuVjB_GyzU">Preparing to launch</a> - Some overall stats that we started with.
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/07/10/ship-tas.html#.VAsC7h_fTZ8">The Stewards</a> - How older students mentored younger ones.
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/07/17/ship-guests.html#.VAsC7R_fTZ8">The Guests Stars</a> - Guest speakers to inspire the kids.
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/07/20/ship-outreach.html#.VAsC6x_fTZ8">Outreach</a> - Some of the challenges in finding the kids.
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/07/28/ship-toolset.html#.VAsC6h_fTZ8">Toolset</a> - What language should we use?
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/07/30/ship-demo-day-tomorrow.html#.VAsC6B_fTZ8">Demo Day</a> - What the TA's built.
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/08/05/ship-outcomes.html#.VAsC5h_fTZ8">Outcomes</a> - And the overall results.
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/08/08/ship-partners.html#.VAsC5B_fTZ8">Partners</a> - We couldn't have done this without St. Josephs
+</li>
+
+<li><a href="http://cestlaz.github.io/2014/08/16/ship-crew.html#.VAsC4x_fTZ8">The Crew</a> - And the best teaching crew in the business.
+</li>
+</ul>
+</div>
+</div>
+
+      <a href="/2014/09/05/SHIP-index.html">Read more -</a><a href="/2014/09/05/SHIP-index.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/09/02/mosl.html">Teacher Ratings</a><span class="right">02 Sep 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+A while back I posted about the new teacher evaluation system in New York.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I originally wrote about the system <a href="http://cestlaz.github.io/2013/09/06/why_i_might_no_longer_be_an_effective_teacher.html#.VAZVNR_GyzU">here</a> and a little more <a href="http://cestlaz.github.io/2013/10/25/effective-teacher-2.html#.VAZVMx_GyzU">here.</a>
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Well, the results are in and I got my evaluation. What type of teacher
+am I? According to New York City I'm "Effective," which is basically
+run of the mill.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"></h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Let's look a little deeper. At the end of the day, each teachers
+receive a numeric score from 0 to 100. The score maps to a grade as
+follows:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="left" />
+
+<col  class="left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="left">0 - 64</td>
+<td class="left">Ineffective</td>
+</tr>
+
+<tr>
+<td class="left">65 - 74</td>
+<td class="left">Developing</td>
+</tr>
+
+<tr>
+<td class="left">75 - 90</td>
+<td class="left">Effective</td>
+</tr>
+
+<tr>
+<td class="left">91 - 100</td>
+<td class="left">Highly Effective</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+With "Effective" being pretty much the old "Satisfactory."
+</p>
+
+<p>
+My overall score was 88.
+</p>
+
+<p>
+How did they arrive at that?
+</p>
+
+<p>
+Over the course of the school year
+teachers are evaluated by their supervisors. Using the <a href="http://danielsongroup.org/framework/">Danielson
+Framework</a> for teaching. I consider the Danielson stuff bunk and have
+yet to be observed by someone who knows my subject area (Computer Science)
+but I do have a fair supervisor who is supportive of her teachers.
+</p>
+
+<p>
+I scored 58 out of 60.
+</p>
+
+<p>
+The rest of the rating comes from standardized tests. Let me once
+again go on record to state that basing teacher ratings on student
+scores is asinine but it's actually worse. For teachers like myself
+who don't teach regents courses, our scores come from school composite
+grades. The city/state have super secret formulas that, incidentally
+are figured out after the results are in to map my schools regents
+results onto my evaluation grade. Yep, 40% of my rating is based on
+students I haven't taught taking exams in subjects I don't teach.
+</p>
+
+<p>
+The end result? We were awarded 30 out of 40 points.
+</p>
+
+<p>
+The end result 58+30=88. 
+</p>
+
+<p>
+So, since my kids didn't show growth on history and English regents,
+I'm a run of the mill teacher. 
+</p>
+
+<p>
+I think it's time to find another profession.
+</p>
+</div>
+</div>
+
+      <a href="/2014/09/02/mosl.html">Read more -</a><a href="/2014/09/02/mosl.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/08/25/state-tests.html">State test scores - don't fall into the trap</a><span class="right">25 Aug 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<div id="outline-container-sec-0-1" class="outline-3">
+<h3 id="sec-0-1">Test results are in:</h3>
+<div class="outline-text-3" id="text-0-1">
+<p>
+The other week, the NY State <a href="http://www.nysed.gov/news/2014/state-education-department-releases-grades-3-8-assessment-results">third through eight grade high stakes
+test results</a> were released. This was immediately followed by the usual spin an posturing.
+The <del>reformers</del> privatizers
+would claim things like "These charter schools did better than those
+public schools" while people like me would say "Those charter schools
+have different populations" and so on.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+As you know, I've never bought into the "miracle school" rot and my
+friend and colleague <a href="https://twitter.com/garyrubinstein">Gary Rubinstein</a> has done a great job at debunking
+many of these schools with the so called "secret sauce."
+</p>
+
+<p>
+When the results came out, I got caught in the trap. I started to cite
+the reasons why the charter schools with phenomenal results are not
+really so wonderful. One can look at:
+</p>
+<ul class="org-ul">
+<li>Attrition rates
+</li>
+<li>Test prep
+</li>
+<li>Lack of back fill
+</li>
+<li>and more.
+</li>
+</ul>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">The Trap</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+So, what's the trap? We shouldn't even be acknowledging the validity
+of these exams.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+These are the 3-8th grade exams so I don't know that much about them,
+but I do know that:
+</p>
+<ul class="org-ul">
+<li>They're not made by teachers.
+</li>
+<li>"Cut scores" are made after the fact - that is, the powers that be
+can <b><b>arbitrarily</b></b> decide what passing is.
+</li>
+<li>The exams <b><b>can't</b></b> be used to drive instruction. 
+</li>
+<li>Exam questions are a tightly held secret.
+</li>
+</ul>
+
+<p>
+There are probably more, but I can't think of them now.
+</p>
+
+<p>
+So exactly what is the value to the students and how do we know what
+these tests are testing?
+</p>
+
+<p>
+What it really comes down to is that we don't trust our teachers. If
+we did, we wouldn't be giving statewide tests.
+</p>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Closer to home</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+What I do know more about are regents exams and they're just as
+ridiculous.
+</p>
+
+<p>
+Public schools ship out their tests for grading while charters grade
+their own. Any wonder why some charters report better results?
+</p>
+
+<p>
+The exams also range from being reasonable assessments to
+ridiculous. I remember one year there was a proof on the regents where
+the question gave the statements and reasons and the student had to
+put them in order. Another year, they had to match the reasons to the
+statements. Both ridiculous. Other years, the proof questions are in
+my opinion reasonable.
+</p>
+
+<p>
+Just as with the 3-8 grade tests, teachers can't use these exams to drive
+instruction because they're given at the end of the year but at least
+the questions aren't sealed so the following year teacher has some
+clue. On the other hand, the "cut score" is again made after the
+fact. Ever wonder why test scores are usually up during election years?
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+And of course, in some cases, the tests just miss the point. At Stuy,
+most of our ninth graders take a class that is usually called Geometry
+and the state regents exam is called the geometry regents and is all
+about Euclidean Geometry. The problem is, the course is really all
+about logic and deductive reasoning using Euclidean Geometry as the
+platform. This is of course missed on a standardized exam.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1">The point:</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+The big point here is that as a nation we don't trust teachers. By the
+time we get to the end of the semester, I know what my kids know and
+generally how they will do on exams, projects, papers and the like. I
+have a good idea as to if they've mastered what I've been trying to
+teach.
+</p>
+
+<p>
+Instead, large amounts of taxpayer dollars are going to private
+companies, placing kids under great stress while narrowing their
+curricular possibilities and using junk science to remove good teachers.
+</p>
+</div>
+</div>
+</div>
+
+      <a href="/2014/08/25/state-tests.html">Read more -</a><a href="/2014/08/25/state-tests.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/08/16/ship-crew.html">Building a SHIP - The Crew</a><span class="right">16 Aug 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<div class="center">
+<figure>
+ <img height="300px" src="/img/ship-crew/crew.jpg">
+<figcaption>The Crew</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+One of the most important, possibly the most important part of SHIP's
+success was the crew and that's what sets us apart.
+</p>
+
+<p>
+I've seen CS Ed organizations run by business people, lawyers,
+investors and more.The people developing curriculum are EdTech people,
+entrepreneurs and anything but seasoned educators. I've seen programs
+developed, curriculum created and then the search for teachers
+commence. Ofttimes real educators aren't involved at all.
+</p>
+
+<p>
+We're teachers all the way down.
+</p>
+
+<p>
+I've said it before and I'll say it again - it's not about the
+curriculum, it's about the teachers. Take, for example, math. Math curricula
+have been well defined for years but we still have major problems with
+math education. The bottom line is that it's the teacher in the room
+that can bring a topic to life or kill it. A great teacher can make
+a lousy curriculum decent. A great curriculum won't do anything for a
+lousy teacher.
+</p>
+
+<p>
+That's where we will succeed - we've got the best teachers and
+that's our crew.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Now, onto the crew.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"></h2>
+<div class="outline-text-2" id="text-4">
+<p>
+I'm fortunate enough to have worked with some terrific teachers. If
+they'd allow it, I'd like to think of three of them as my
+proteges. Sam and JonAlf were actually students of mine when they were
+at Stuy but I include Topher in the mix. Our fourth teacher, Yulia,
+was JonAlf's student teacher this past year.
+</p>
+
+<p>
+Coaching trees have become popular in recent history. It's kind of cool
+that we have one for CS teachers.
+</p>
+
+<div class="center">
+<figure>
+ <img height="400px" width="600px" src="/img/ship-crew/tree1.png">
+<figcaption>Coaching tree</figcaption>
+</figure>
+</div>
+
+<p>
+Of course, it extends up as well, although my mentors, excepting Robert, didn't teach
+CS. 
+</p>
+
+<div class="center">
+<figure>
+ <img height="400px" width="600px" src="/img/ship-crew/tree2.png">
+<figcaption>Extended coaching tree</figcaption>
+</figure>
+</div>
+
+<p>
+And of course the rest of the team have other influences as well.
+</p>
+
+<p>
+So let's talk about the crew.
+</p>
+</div>
+
+<div id="outline-container-sec-4-0-1" class="outline-4">
+<h4 id="sec-4-0-1">JonAlf Dyrland-Weaver</h4>
+<div class="outline-text-4" id="text-4-0-1">
+<p>
+I like to describe JonAlf as a younger, hipper version of me. Of
+course, I set the hip bar pretty low. I tell my kids that I used to be
+the young teacher but I was never the hip teacher. 
+</p>
+
+<p>
+JonAlf and I are probably the most similar in style. Of course, this
+means that if you put us in a room together, all productivity
+ceases. We've come up with such great ideas as our mascot, Clyde
+"Thluffy" Sinclair," the Stuy CS semi-formal and more (or is that
+less).
+</p>
+
+<p>
+He's been my partner in crime since he came on board. Back in the day
+I was the only teacher of our post AP classes and I was delighted to
+offload some of that burden to JonAlf.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-0-2" class="outline-4">
+<h4 id="sec-4-0-2">Topher Brown</h4>
+<div class="outline-text-4" id="text-4-0-2">
+<p>
+JonAlf was the hip one (with the bar, admittedly set pretty low) until
+Topher came aboard. Topher didn't go to Stuy so he can never be a made
+man, but he's pretty awesome, nonetheless. He came in as a math
+teacher who just coincidentally had a bit of a CS background. He fit
+into our insanity from day one.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-0-3" class="outline-4">
+<h4 id="sec-4-0-3">Sam Konstantinovich</h4>
+<div class="outline-text-4" id="text-4-0-3">
+<p>
+Sam was also my student. He's the mature one (again, the bar was set
+pretty low). I joke that he has the reputation for being the mean one
+because his first day at Stuy he said something that scared some of
+his students. Definitely more together and organized than the rest of
+us I tried to convince him to join our team for three or four years
+before he finally came over.
+</p>
+
+<p>
+Just to be sure no one misreads my comments on Sam. I've trusted him
+with my son's CS education. I think that should tell you how much I
+think of him.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-0-4" class="outline-4">
+<h4 id="sec-4-0-4">Yulia Genkina</h4>
+<div class="outline-text-4" id="text-4-0-4">
+<p>
+Yulia's the new kid on the block. We all went in feeling very positive
+about having her on the team. At least until she tried to off all of
+us on Pirate Day.
+</p>
+
+<div class="center">
+<p style="float:left">
+<figure style="float:left;padding:20px">
+ <img height="150px" " src="/img/ship-crew/dw.jpg">
+<figcaption>Yulia trying to off JonAlf</figcaption>
+</figure>
+<figure style="padding:20px">
+ <img height="150px" " src="/img/ship-crew/sam.jpg">
+<figcaption>Sam</figcaption>
+</figure>
+</p>
+<p style="clear:both"></p>
+<p style="float:left">
+<figure style="float:left;padding:20px">
+ <img height="150px" " src="/img/ship-crew/topher.jpg">
+<figcaption>Topher</figcaption>
+</figure>
+<figure style="padding:20px">
+ <img height="150px" " src="/img/ship-crew/z.jpg">
+<figcaption>and me</figcaption>
+</figure>
+</p>
+<p style="clear:both"></p>
+</div>
+
+<p>
+Seriously though, she fits right in and is also a real talent.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"></h2>
+<div class="outline-text-2" id="text-5">
+<p>
+That's the crew. I'm amazingly proud of all of them and one of the
+things I was most happy about my role in SHIP was that I was able to
+empower them to be themselves and just do their thing. When you have
+a great crew that's how you do it.
+</p>
+</div>
+</div>
+
+      <a href="/2014/08/16/ship-crew.html">Read more -</a><a href="/2014/08/16/ship-crew.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/08/08/ship-partners.html">Building a SHIP - Our partner - St. Joseph's College</a><span class="right">08 Aug 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+From the day we filed the paperwork to create CSTUY, we knew we wanted
+to run a summer program. In fact, we started looking for a space
+during the 2012/2013 school year. We were hoping to run SHIP for the
+first time in the summer of 2013 but we all knew it wasn't really a
+realistic goal.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Our original plans required at least one classroom sized space, and up
+to three for full days for a month. We figured this would be a hard
+sell for a tech company, after all, what company is going to take a
+room, let alone three, off line for half the summer. 
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+So, we turned to institutions of higher learning. I started talking to friends at a CS
+program in one of our city's colleges. They loved the idea of hosting
+a CSTUY program. Problem was that once the plans went up through the
+college channels, the administrative side wasn't as hot to host
+us. While the CS people really wanted us, the administrative side was
+perfectly willing to give us space as long as we paid an amount that
+really was much more than we could afford. To be honest, this really
+irritated me. Here we have a supposedly non-profit college that's
+supposed to support the community and the public good nickle and
+diming another non profit that really is trying to do some good.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"></h2>
+<div class="outline-text-2" id="text-4">
+<p>
+We ended up speaking to a number of educational institutions across
+the city and the situation was the same. Sure you can have space. Here
+are our rates&#x2026;..
+</p>
+</div>
+</div>
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"></h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Now, you might wonder, why not just use high school space? Because it
+was important to be hosted at what should be the "next level" for the
+participants.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"></h2>
+<div class="outline-text-2" id="text-6">
+<p>
+In the mean time, I met <a href="http://www.sjcny.edu/FacultyExperts/124">Bill McAllister</a>, CS Professor at St. Joseph's
+College on Long Island. He hosts a terrific annual high school
+<a href="http://faculty.sjcny.edu/~ProgrammingCompetition/">programming competition</a>. Bill referred me to David Seppala-Holtzman
+the Math and CS Chair at the Brooklyn Campus. 
+</p>
+
+<p>
+David and I clicked and one thing led to another and in the end,
+having overlapping visions and goals, St. Joseph's College in Brooklyn
+decided to host us.
+</p>
+
+<p>
+I couldn't ask for a better partner. They provided us with all the
+facilities we needed from rooms for the classes, to lounge space, to
+access to the cafeteria (and got us a great rate on food to boot).
+</p>
+
+<p>
+The whole St. Joseph's family made everything so easy for us. At one
+point one of our instructors commented "wow, this is such a friendly
+campus."
+</p>
+
+<p>
+Without the help and support of St. Joseph's college, SHIP doesn't
+happen. It was a great partnership and we're looking forward to
+working together on SHIP 2.0 next year.
+</p>
+</div>
+</div>
+
+      <a href="/2014/08/08/ship-partners.html">Read more -</a><a href="/2014/08/08/ship-partners.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/08/05/ship-outcomes.html">Building a SHIP - Outcomes</a><span class="right">05 Aug 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+SHIP ended last week. So, how did we do? Time to look at outcomes.
+</p>
+
+<p>
+Outcomes can be tricky. There are lots of programs out there and they
+all claim amazing results. Unfortunately, it seems to me, that
+everyone's so concerned with good PR that, well, you know, lies,
+damned lies, statistics.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+First you've got claims like "learn how to make a mobile app in under
+n weeks." I always chuckle at this. If it was that easy, why do we
+have a tech talent shortage? I'm immediately skeptical of any program
+that claims that kids go from nothing to making full featured web
+apps or some amazing professional quality game in just a few
+weeks. Learning takes time. The only way you get these miracle results
+is by using frameworks, simplified tools, or scaffolding of some
+kind. True learning, retention, and the ability to transfer knowledge
+is minimal. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"></h2>
+<div class="outline-text-2" id="text-3">
+<p>
+Then we have assorted stats. Here's one of my favorites.
+</p>
+
+<p>
+Our students outperform other students who take APCS. We see this from
+screened programs. Now, I have no problem with screening &#x2013; we do this
+at CSTUY, just don't imply that you're just taking everyone who
+applies. If you have an application or an interview, you're screening
+and starting ahead of the game. Since kids have to elect to come to
+our programs they certainly have a good deal of interest. So, what
+this claim is really saying is that a kid who likes CS enough to spend
+their summers and or after school time doing it is likely to do better
+than a kid who isn't going to spend this time doing CS. Big surprise.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"></h2>
+<div class="outline-text-2" id="text-4">
+<p>
+So, how do we measure our outcomes. 
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"></h2>
+<div class="outline-text-2" id="text-5">
+<p>
+We can start with the work the
+shipmates did. We use processing and the shipmates learned from the
+ground up. That is, they wrote everything from scratch. Some of the
+groups taught themselves how to use processing libraries if they
+needed facilities like a web API or accessing a camera, but since they
+built everything up from simple statements, if they successfully
+completed good projects, we could be pretty sure they've moved from
+neophytes to programmers. 
+</p>
+
+<p>
+The projects were terrific
+</p>
+
+<p style="float:left">
+<figure style="float:left;padding:20px">
+ <img height="300px" " src="/img/ship-outcomes/pacinvaders.png">
+<figcaption>PacInvaders by Sam, Margaret, and Ryan</figcaption>
+</figure>
+<figure style="padding:20px">
+ <img height="300px" " src="/img/ship-outcomes/iphone.png">
+<figcaption>IPhone simulator by Aminata, Sabrina, and Soraya</figcaption>
+</figure>
+</p>
+<p style="clear:both"></p>
+
+<p>
+The screen shots are just two samples but all the shipmates put
+together great projects and since we used real tools, the shipmates
+are well prepared for their next courses be they with us, in school,
+or elsewhere.
+</p>
+
+<p>
+The Stewards also completed projects. I talked a bit about them in my
+<a href="http://cestlaz.github.io/2014/07/30/ship-demo-day-tomorrow.html#.U-Frpx_GyzU">previous post</a>.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"></h2>
+<div class="outline-text-2" id="text-6">
+<p>
+We also looked at surveys. We did ask some of the soft questions that
+I alluded to above. Are you more likely to explore CS after SHIP?
+How has SHIP influenced your opinion of CS and Tech? The answer to
+the first was an overwhelming yes and the second was also
+overwhelmingly positive.
+</p>
+
+<p>
+The money questions though, were did they want to come back for a
+Saturday program and one next summer. Other than the shipmates that
+lived too far away, again, the vast majority want to return.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"></h2>
+<div class="outline-text-2" id="text-7">
+<p>
+Combine the programs they made and the fact that they want to come
+back with great unsolicited feedback from parents and the shipmates
+themselves and I think we can say that SHIP was a tremendous success.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-8" class="outline-2">
+<h2 id="sec-8"></h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Now we have to figure out how to raise the funds for the Saturday
+program and next summer.
+</p>
+</div>
+</div>
+
+      <a href="/2014/08/05/ship-outcomes.html">Read more -</a><a href="/2014/08/05/ship-outcomes.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+    <li>
+      <a class="title" href="/2014/07/30/ship-demo-day-tomorrow.html">Can't wait for CSTUY SHIP Demo day tomorrow</a><span class="right">30 Jul 2014</span>
+      
+	<style>
+div.center {text-align:center;}
+</style>
+
+
+<figure>
+<img height="300px" " src="/img/ship-demo-day-tomorrow/mirandia.jpg">
+<figcaption>Miranda and Nadia showing off their project</figcaption>
+</figure>
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"></h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Tomorrow is the last day of SHIP and we'll be capping the whole thing
+off with a day of demos, science fair style.
+</p>
+
+<p>
+Both the shipmates and the stewards will be showing off their work and
+I can't wait. I've intentionally stayed away from the shipmates
+because I want to be surprised but I've seen what the stewards have
+been doing and I can't tell you how proud I am of their work. I was
+going to say amazed, but actually, I'm not amazed at all &#x2013; I know
+they're all awesome.
+</p>
+
+<p>
+I'll put up pictures, descriptions and hopefully video after the event
+but here's a quick summary of what they've done:
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"></h2>
+<div class="outline-text-2" id="text-2">
+<p>
+<b><b>3d network augmented reality pong</b></b> - 
+A 3d depth perception networked pong that you play using your hand as
+*the paddle. The program uses the camera and blob recognition to
+control the game.
+</p>
+
+<p>
+<b><b>Augmented Reality Board Game</b></b> - 
+It started with the stewards taking a picture of a maze and then
+having their program solve it but it evolved into a game. The computer
+continually takes a picture of the board and plays against a human
+opponent who makes moves on the physical board.
+</p>
+
+<p>
+<b><b>Painting identifier</b></b> (pictured above) - 
+Take a picture of a painting and the program will try to identify it.
+</p>
+
+<p>
+<b><b>Seam Carving Image editor</b></b> - 
+Look it up on youtube - it's really neat.
+</p>
+
+<p>
+<b><b>Photo Booth</b></b> - 
+A little more cut and dry than the above but one of the instructors
+has a wedding coming up and so we needed to build the photo booth.
+</p>
+
+<p>
+All these projects are awesome and what's more they're all done from
+scratch. Early on Gerry was visiting and commented on an early version
+of the pong game. He said "they're writing their own blob detection,
+right?" Of course. They can use libraries later. Now it's about
+learning neat things.
+</p>
+
+<p>
+I can't wait to see the stewards show these off tomorrow and also to
+see the shipmates projects.
+</p>
+
+<p>
+On a side note, I've started to go through the comments the shipmates
+have been writing down about the program - they just confirm what I
+already knew - I'm lucky to be working with the best group of
+educators out there.
+</p>
+</div>
+</div>
+
+      <a href="/2014/07/30/ship-demo-day-tomorrow.html">Read more -</a><a href="/2014/07/30/ship-demo-day-tomorrow.html#disqus_thread"> comments</a>
+	<hr/>
+      </li>
+    
+  </ul>
+
+<div class="pagination">
+  
+    <span class="previous">Previous</span>
+  
+  <span class="page_number ">Page: 1 of 12</span>
+  
+    <a href="/page2" class="next ">Next</a>
+  
+</div>
+
+
+ <script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'cestlaz'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+    </script>
+    
+
+	<!-- End Main Content -->
+      </div>
+
+
+      <div class="c2 last">
+
+<!-- feedburner subscribe via email -->
+<form style="border:1px solid #ccc;padding:3px;text-align:center;" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('http://feedburner.google.com/fb/a/mailverify?uri=CestLaZ', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true"><p>Enter your email address:</p><p><input type="text" style="width:140px" name="email"/></p><input type="hidden" value="CestLaZ" name="uri"/><input type="hidden" name="loc" value="en_US"/><input type="submit" value="Subscribe" /><p>Delivered by <a href="http://feedburner.google.com" target="_blank">FeedBurner</a></p></form>
+<!--  feedburner subscribe end -->
+	<!-- Twitter sidebar start -->
+	<table>
+	  <tr><td>
+	    <a class="twitter-timeline" href="https://twitter.com/zamansky" data-widget-id="251117725303312385">Tweets by @zamansky</a>
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	  </td></tr></table>
+	<!-- Twitter sidebar end -->
+
+
+	  <table class="hoverback">
+	  <tr><th>Past Posts</th></tr>
+	
+	  <tr><td><a href="/2014/10/05/easy-assignments.html">Using easy assignments to introduce deep concepts</a></td></tr>
+	
+	  <tr><td><a href="/2014/09/23/I-know-that.html">Wait, I know that!!!!</a></td></tr>
+	
+	  <tr><td><a href="/2014/09/17/stuycs-spectator.html">A birds eye view of my career</a></td></tr>
+	
+	  <tr><td><a href="/2014/09/05/SHIP-index.html">Building a High School Summer CS Program - SHIP</a></td></tr>
+	
+	  <tr><td><a href="/2014/09/02/mosl.html">Teacher Ratings</a></td></tr>
+	
+	  <tr><td><a href="/2014/08/25/state-tests.html">State test scores - don't fall into the trap</a></td></tr>
+	
+	  <tr><td><a href="/2014/08/16/ship-crew.html">Building a SHIP - The Crew</a></td></tr>
+	
+	  <tr><td><a href="/2014/08/08/ship-partners.html">Building a SHIP - Our partner - St. Joseph's College</a></td></tr>
+	
+	</table>
+
+
+      </div>
+    </div>
+
+<!-- getclicky tracking code -->
+<a title="Google Analytics Alternative" href="http://clicky.com/100530816"><img alt="Google Analytics Alternative" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100530816); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100530816ns.gif" /></p></noscript>
+<!-- endgetclicky -->
+
+<!-- google analytics code -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-35203750-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- end google analytics -->
+  </body>
+</html>
