@@ -6,13 +6,6 @@
 
 <div class="container jumbotron" style="border-radius:30px">
   <h4>What do you want to know?</h4>
-
-  <div class="form-group">
-    <form>
-      <button class="btn btn-primary btn-lg" type="submit" name="submit" value="submit">Ask</button>
-    </form>
-  </div>
-
 </div>
 
 {% endblock bodycontent %}
