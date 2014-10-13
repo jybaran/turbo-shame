@@ -1,59 +1,74 @@
+# -*- coding: cp1252 -*-
+
 import re
 
+corpus = open('worldwartwo.txt','r')
+temp = corpus.read()
+corpus_text = temp.replace('\n',' ')
+corpus.close()
 
-data = open("15414.txt", "r")
-text = data.read()
-data.close()
+english = open('words.txt','r')
+words = english.read()
+english.close()
 
-fname = open("firstnames.txt", "r")
-firstnames = []
-for line in fname:
-    firstnames.append(line.split()[0].capitalize())
-fname.close()
-
-lname = open("lastnames.txt", "r")
-lastnames = []
-for line in lname:
-    lastnames.append(line.split()[0].capitalize())
-lname.close()
-
-t = open("titles.txt","r")
-titles = t.read()
-t.close()
-for line in titles:
-	firstnames.append(line)
+match_names = re.findall(r"((?!A |The |a |the )([A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüý]*\. )?([A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüý]*\.? ?)+(((von )?(van )?(del )?(de la )?(de los )?(de las )?(l')?(d')?(Mc)?(Mac)?[A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüý]*))?(( Sr\.)|( Jr\.)|( M*D*C*L?X*V*I*V?X?L?C?D?M?))?)",corpus_text)
+match_dates = re.findall(r"((January|February|March|April|May|June|July|August|September|October|November|December) ([0-3]?[0-9](th|rd|st|nd)?,? )?([0-9]+(\-[0-9]+)?)?(( (A(\.)?D(\.)?))|( B(\.)?C(\.)?E(\.)?)|( (B(\.)?C(\.)?)))?)",corpus_text)
 
 names = []
+for name in match_names:
+    item = name[0]
+    l = item.split(" ")
+    while "" in l: #null characters are a sin
+        l.remove("")
+    item = (" ").join(l)
 
-def cleanUp(list):
-    newlist = []
-    for thing in list:
-        if not thing in newlist: 
-            newlist.append(thing)   
-    return newlist
+    if ((item[len(item)-1] == '.') or (item[len(item)-1] == '\xe2')): #get out of here sentence periods and utf hyphens
+        item = item[:len(item)-1]
 
-def findNames(s):
-    matchNames = re.findall(r"([A-Z][a-z]+ [A-Z][a-z]+)", s)
-    ifName(matchNames)
-    matchTitle = re.findall(r"([A-Z][a-z.]+ [A-Z][a-z]+[ -][A-Z][a-z]+)", s)
-    ifName(matchTitle)
-    matchInitial = re.findall(r"([A-Z][a-z]+ [A-Z]. [A-Z][a-z]+)", s)
-    ifName(matchInitial)
-    matchFull = re.findall(r"([A-Z][a-z.]+ [A-Z][a-z.]+[ -][A-Z][a-z.]+[ -][A-Z][a-z]+)", s) 
-    ifName(matchFull)   
-    print (cleanUp(names))
+    l2 = item.split(" ")
+          
+    isEnglish = False
+    isShort = True
+    hasComma = False
+    
+    for word in l2:
+        word = word.strip()
+        s = "\n"+word.upper()+"\n"
+        if s in words:
+          isEnglish = True
+          
+    if len(item) > 1:
+        isShort = False
 
-
-def ifName(l):
-    for name in l:
-        s = name.split()
-        if s[0] in firstnames:
-            names.append(name)
-        if s[0] in titles:
-            if s[1] in firstnames or s[1] in lastnames:
-                names.append(name)
+    for w in l2:
+        if ',' in w:
+            hasComma = True
+            
+    if ((not isEnglish) and (not isShort) and (not hasComma)):
+        names.append(item)
+print names
 
 
-	
-if __name__=="__main__":
-    findNames(text)
+
+dates = []
+for d in match_dates:
+    date = d[0]
+    l = date.split(" ")
+    while "" in l: #null characters aaaaaaaa
+        l.remove("")
+    item = (" ").join(l).strip()
+    dates.append(item)
+    
+print dates
+
+
+
+
+
+
+
+
+
+
+
+
