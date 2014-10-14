@@ -6,17 +6,16 @@ import getResults
 app = Flask(__name__)
 
 
-@app.route("/", methods = ["GET", "POST"])
+@app.route("/")
 def main():
-    
-    #if request.method == "POST":
-     #   question = request.form["question"]
+    question = request.args.get("question",None)
     if question != None:
-        answer = getResults.get_results(question)
-        return render_template("results.html", question=question, answer=answer)
-    
-    else:
-        return render_template("home.html")
+        answer = getResults.everything(question)
+     #   return render_template("results.html", question=question, answer=answer)
+    #
+    #else:
+     #   return render_template("home.html")
+    return render_template("home.html")
 
 if __name__ == "__main__":
     app.debug=True

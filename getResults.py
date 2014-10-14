@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import google
 import urllib2
 import re
+from collections import Counter
+
 
 #corpus = open('worldwartwo.txt','r')
 #temp = corpus.read()
@@ -13,6 +15,19 @@ import re
 english = open('words.txt','r')
 words = english.read()
 english.close()
+
+def everything(query):
+    data = get_results(query)
+    if query[:4] == "who ": 
+        l = findnames(data)
+    elif query[:4] == "when":
+        l= finddates(data)
+    else: 
+        return None
+    c = Counter(l)
+    l2 = c.most_common(5)
+    return l2
+    
 
 def get_results(query):
     data=""
