@@ -1,6 +1,8 @@
 #!/usr/bin/python
 from flask import Flask, render_template
+from bs4 import BeautifulSoup
 import google
+import urllib2
 
 app = Flask(__name__)
 
@@ -8,6 +10,12 @@ app = Flask(__name__)
 @app.route("/home")
 def home():
     return render_template("home.html")
+
+@app.route("/results")
+def results():
+    #question = THE QUESTION
+    #answer = THE RESULTS
+    return render_template("results.html", question=question, answer=answer)
 
 if __name__ == "__main__":
     app.debug=True
