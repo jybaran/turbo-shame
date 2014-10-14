@@ -1,5 +1,8 @@
 # -*- coding: cp1252 -*-
 
+from bs4 import BeautifulSoup
+import google
+import urllib2
 import re
 
 #corpus = open('worldwartwo.txt','r')
@@ -10,6 +13,17 @@ import re
 english = open('words.txt','r')
 words = english.read()
 english.close()
+
+def get_results(query):
+    data=""
+    for url in google.search(query,num=1,start=0,stop=10): #searching for query "hello"
+        u = urllib2.urlopen(url)
+        d = u.read()
+        soup = BeautifulSoup(d)
+        for script in soup(["script","style"]):
+            script.extract()
+        data = data + soup.get_text().encode('UTF-8').replace("\n","")
+    return data
 
 def findnames(text): 
     match_names = re.findall(r"((?!A |The |a |the )([A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüý]*\. )?([A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüý]*\.? ?)+(((von )?(van )?(del )?(de la )?(de los )?(de las )?(l')?(d')?(Mc)?(Mac)?[A-ZÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝ][a-zàáâãäåæçèéêëìíîïðñòóôõöøùúûüý]*))?(( Sr\.)|( Jr\.)|( M*D*C*L?X*V*I*V?X?L?C?D?M?))?)",text)

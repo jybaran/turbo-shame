@@ -1,8 +1,6 @@
 #!/usr/bin/python
 from flask import Flask, render_template
-from bs4 import BeautifulSoup
-import google
-import urllib2
+from collections import Counter
 
 app = Flask(__name__)
 
