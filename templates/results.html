@@ -4,6 +4,14 @@
 
 <center><h3>{{question}}</h3></center>
 
-<div class="container"><h4>{{answer}}</h4></div>
+<div class="container">
+  <p><h4>Top Result: {{answer[0][0]}} ({{answer[0][1]}} instances)</h4></p> 
+  <br><br>
+  <h4>More Results:</h4>
+  <p><br>{{answer[1][0]}} ({{answer[1][1]}} instances)
+  <br>{{answer[2][0]}} ({{answer[2][1]}} instances)
+  <br>{{answer[3][0]}} ({{answer[1][1]}} instances)
+  <br>{{answer[4][0]}} ({{answer[1][1]}} instances)</p>
+</div>
 
 {% endblock bodycontent %}
