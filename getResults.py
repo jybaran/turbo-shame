@@ -55,7 +55,7 @@ def findnames(text):
                 
         for w in l2:
             if ',' in w:
-            hasComma = True
+                hasComma = True
 
         if ((not isEnglish) and (not isShort) and (not hasComma)):
             names.append(item)
