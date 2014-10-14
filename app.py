@@ -11,7 +11,7 @@ def main():
     question = request.args.get("question",None)
     if question != None:
         answer = getResults.everything(question)
-     #   return render_template("results.html", question=question, answer=answer)
+        return render_template("results.html", question=question, answer=answer)
     #
     #else:
      #   return render_template("home.html")
